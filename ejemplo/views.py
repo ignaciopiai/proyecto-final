@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404 
-from ejemplo.models import Familiar
+from ejemplo.models import Familiar, Mascota
 from ejemplo.forms import Buscar, FamiliarForm 
 from django.views import View 
 
@@ -109,3 +109,7 @@ class BorrarFamiliar(View):
       familiar.delete()
       familiares = Familiar.objects.all()
       return render(request, self.template_name, {'lista_familiares': familiares})
+
+def mostrar_mascota(request):
+  lista_mascotas = Mascota.objects.all()
+  return render(request, "ejemplo/mascotas.html", {"lista_mascotas": lista_mascotas})
