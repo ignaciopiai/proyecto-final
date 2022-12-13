@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404 
-from ejemplo.models import Familiar, Mascota
-from ejemplo.forms import Buscar, FamiliarForm, MascotaForm
+from ejemplo.models import Familiar, Mascota, Vehiculo
+from ejemplo.forms import Buscar, FamiliarForm, MascotaForm, VehiculoForm
 from django.views import View 
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 
 def index(request):
     return render(request, "ejemplo/saludar.html")
@@ -181,3 +182,46 @@ class ActualizarMascota(View):
                                                       'msg_exito': msg_exito})
       
       return render(request, self.template_name, {"form": form})
+
+def mostrar_vehiculo(request):
+  lista_vehiculo = Vehiculo.objects.all()
+  return render(request, "ejemplo/vehiculo.html", {"lista_vehiculo": lista_vehiculo})
+
+class AltaVehiculo(View):
+
+    form_class = VehiculoForm
+    template_name = 'ejemplo/alta_vehiculos.html'
+    initial = {"tipo":"", "color":""}
+
+    def get(self, request):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form':form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            form.save()
+            msg_exito = f"se cargo con éxito el vehículo {form.cleaned_data.get('tipo')}"
+            form = self.form_class(initial=self.initial)
+            return render(request, self.template_name, {'form':form, 
+                                                        'msg_exito': msg_exito})
+        
+        return render(request, self.template_name, {"form": form})
+
+
+class FamiliarList(ListView):
+  model = Familiar
+
+class FamiliarCrear(CreateView):
+  model = Familiar
+  success_url = "/panel-familia"
+  fields = ["nombre", "direccion", "numero_pasaporte"]
+
+class FamiliarBorrar(DeleteView):
+  model = Familiar
+  success_url = "/panel-familia"
+
+class FamiliarActualizar(UpdateView):
+  model = Familiar
+  success_url = "/panel-familia"
+  fields = ["nombre", "direccion", "numero_pasaporte"]

@@ -18,7 +18,9 @@ from django.urls import path
 from ejemplo.views import( index, saludar_a, sumar, buscar, monstrar_familiares,
                              BuscarFamiliar, AltaFamiliar, ActualizarFamiliar,
                              BorrarFamiliar, mostrar_mascota, AltaMascota, BuscarMascota,
-                             BorrarMascota, ActualizarMascota )
+                             BorrarMascota, ActualizarMascota, mostrar_vehiculo, AltaVehiculo,
+                             FamiliarList, FamiliarCrear, FamiliarBorrar,
+                             FamiliarActualizar )
 
 
 urlpatterns = [
@@ -37,4 +39,11 @@ urlpatterns = [
     path('mis-mascotas/buscar', BuscarMascota.as_view()),
     path('mis-mascotas/borrar/<int:pk>', BorrarMascota.as_view()),
     path('mis-mascotas/actualizar/<int:pk>', ActualizarMascota.as_view()),
+    path('mis-vehiculos/', mostrar_vehiculo),
+    path('mis-vehiculos/alta', AltaVehiculo.as_view()),
+    path('panel-familia/', FamiliarList.as_view()),
+    path('panel-familia/crear', FamiliarCrear.as_view()),
+    path('panel-familia/<int:pk>/borrar', FamiliarBorrar.as_view()),
+    path('panel-familia/<int:pk>/actualizar', FamiliarActualizar.as_view()),
+
 ]

@@ -1,0 +1,16 @@
+{% extends 'ejemplo/base.html' %}
+{% block contenido %}
+   
+    {% for vehiculo in lista_vehiculo %}
+    <ul>
+        <li> Tipo: {{vehiculo.tipo}}, Color: {{vehiculo.color}}
+        
+
+        </li>
+    </ul>
+    {% endfor %}
+{%endblock %}
+
+{% block titulo%}
+Lista de todos mis Mascotas
+{% endblock %}
