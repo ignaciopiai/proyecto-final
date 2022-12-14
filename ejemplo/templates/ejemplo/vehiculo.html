@@ -1,16 +1,16 @@
 {% extends 'ejemplo/base.html' %}
 {% block contenido %}
-   
+    <a href="/mis-vehiculos/alta">Agregar un Vehículo a la Lista</a>
     {% for vehiculo in lista_vehiculo %}
     <ul>
         <li> Tipo: {{vehiculo.tipo}}, Color: {{vehiculo.color}}
-        
-
+            <a href="/mis-vehiculos/actualizar/{{ vehiculo.id }}">Actualizar</a>
+            <a href="/mis-vehiculos/borrar/{{ vehiculo.id }}">Borrar</a>
         </li>
     </ul>
     {% endfor %}
 {%endblock %}
 
 {% block titulo%}
-Lista de todos mis Mascotas
+Lista de todos mis Vehículos
 {% endblock %}

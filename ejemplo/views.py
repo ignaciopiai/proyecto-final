@@ -209,6 +209,39 @@ class AltaVehiculo(View):
         return render(request, self.template_name, {"form": form})
 
 
+class BorrarVehiculo(View):
+  template_name = 'ejemplo/vehiculo.html'
+ 
+  def get(self, request, pk): 
+      vehiculo = get_object_or_404(Vehiculo, pk=pk)
+      vehiculo.delete()
+      vehiculo = Vehiculo.objects.all()
+      return render(request, self.template_name, {'lista_vehiculo': vehiculo})
+
+class ActualizarVehiculo(View):
+  form_class = VehiculoForm
+  template_name = 'ejemplo/actualizar_vehiculo.html'
+  initial = {"tipo":"", "color":""}
+  
+  def get(self, request, pk): 
+      vehiculo = get_object_or_404(Vehiculo, pk=pk)
+      form = self.form_class(instance=vehiculo)
+      return render(request, self.template_name, {'form':form,'vehiculo': vehiculo})
+
+  def post(self, request, pk): 
+      vehiculo = get_object_or_404(Vehiculo, pk=pk)
+      form = self.form_class(request.POST ,instance=vehiculo)
+      if form.is_valid():
+          form.save()
+          msg_exito = f"se actualizó con éxito el vehiculo {form.cleaned_data.get('tipo')}"
+          form = self.form_class(initial=self.initial)
+          return render(request, self.template_name, {'form':form, 
+                                                      'vehiculo': vehiculo,
+                                                      'msg_exito': msg_exito})
+      
+      return render(request, self.template_name, {"form": form})
+
+
 class FamiliarList(ListView):
   model = Familiar
 

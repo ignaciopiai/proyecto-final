@@ -1,0 +1,15 @@
+{% extends 'ejemplo/base.html' %}
+{% block titulo%} Modificar datos de un Vehiculo {% endblock %}
+{% block contenido %}
+
+<form action="/mis-vehiculos/actualizar/{{ vehiculo.id }}" method="post"> 
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Actualizar">
+</form>
+
+<h2 style="color:green">{{msg_exito}}</h2>
+<a href="/mis-vehiculos">Volver al listado de Mis Vehículos</a>
+
+
+{% endblock %}
