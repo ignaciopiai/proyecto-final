@@ -22,7 +22,8 @@ from ejemplo.views import( index, saludar_a, sumar, buscar, monstrar_familiares,
                              BorrarVehiculo, ActualizarVehiculo, FamiliarList, FamiliarCrear, FamiliarBorrar,
                              FamiliarActualizar )
 
-from ejemplo_dos.views import index, PostList, PostCrear
+
+from ejemplo_dos.views import index, PostDetalle, PostListar, PostCrear, PostBorrar, PostActualizar
 
 
 
@@ -51,8 +52,11 @@ urlpatterns = [
     path('panel-familia/<int:pk>/borrar', FamiliarBorrar.as_view()),
     path('panel-familia/<int:pk>/actualizar', FamiliarActualizar.as_view()),
 
-    path('ejemplo-dos/', index),
-    path('ejemplo-dos/listar', PostList.as_view()),
-    path('ejemplo-dos/crear', PostCrear.as_view()),
+    path('ejemplo-dos/', index, name="ejemplo-dos-index"),
+    path('ejemplo-dos/<int:pk>/detalle/', PostDetalle.as_view(), name="ejemplo-dos-detalle"),
+    path('ejemplo-dos/listar/', PostListar.as_view(), name="ejemplo-dos-listar"),
+    path('ejemplo-dos/crear/', PostCrear.as_view(), name="ejemplo-dos-crear"),
+    path('ejemplo-dos/<int:pk>/borrar/', PostBorrar.as_view(), name="ejemplo-dos-borrar"),
+    path('ejemplo-dos/<int:pk>/actualizar/', PostActualizar.as_view(), name="ejemplo-dos-actualizar"),
 
 ]
