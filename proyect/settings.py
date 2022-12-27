@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ejemplo.apps.EjemploConfig', # ESTA ES LA NUEVA APP !!
     'ejemplo_dos.apps.EjemploDosConfig',
+    'blog.apps.BlogConfig',
 ]
 
 MIDDLEWARE = [
