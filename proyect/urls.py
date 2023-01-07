@@ -27,11 +27,11 @@ from ejemplo.views import( index, saludar_a, sumar, buscar, monstrar_familiares,
 
 from ejemplo_dos.views import( index, PostDetalle, PostListar, PostCrear,
                                  PostBorrar, PostActualizar, UserSignUp, UserLogin, UserLogout,
-                                  AvatarActualizar )
+                                   )
 from django.contrib.admin.views.decorators import staff_member_required
 
 from blog.views import  ( index, PostDetalle, PostListar, PostCrear, PostBorrar, PostActualizar, UserSignUp, 
-                                UserLogin, UserLogout )
+                                UserLogin, UserLogout, AvatarActualizar )
 
 
 
@@ -69,7 +69,7 @@ urlpatterns = [
     path('ejemplo-dos/signup/', UserSignUp.as_view(), name="ejemplo-dos-signup"),
     path('ejemplo-dos/login/', UserLogin.as_view(), name="ejemplo-dos-login"),
     path('ejemplo-dos/logout/', UserLogout.as_view(), name="ejemplo-dos-logout"),
-    path('ejemplo-dos/avatars/<int:pk>/actualizar/', AvatarActualizar.as_view(), name="ejemplo-dos-avatars-actualizar"),
+    
 
     path('blog/', index, name="blog-index"),
     path('blog/<int:pk>/detalle/', PostDetalle.as_view(), name="blog-detalle"),
@@ -80,6 +80,7 @@ urlpatterns = [
     path('blog/signup/', UserSignUp.as_view(), name="blog-signup"),
     path('blog/login/', UserLogin.as_view(), name="blog-login"),
     path('blog/logout/', UserLogout.as_view(), name="blog-logout"),
+    path('blog/avatars/<int:pk>/actualizar/', AvatarActualizar.as_view(), name="blog-avatars-actualizar"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

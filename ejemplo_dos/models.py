@@ -9,9 +9,6 @@ class Post(models.Model):
     publicado_el = models.DateField()
     imagen = models.ImageField(upload_to="posteos", null="True", blank=True)
     
-class Avatar(models.Model):
-    user = models.OneToOneField(to=User, on_delete=models.CASCADE, related_name="avatar")
-    imagen = models.ImageField(upload_to="avatares", null="True", blank=True)
 
 class Mensaje(models.Model):
     email = models.EmailField()

@@ -9,5 +9,9 @@
    <div>
      {{object.publicado_el}}
    </div>
+   <div>
+    <img src="{{object.imagen.url}}" height="512">
+    </div>
+
    <a class="btn btn-primary btn-sm" href="{% url 'blog-listar' %}">Volver al listado</a>
 {% endblock %}
