@@ -6,11 +6,12 @@ from django.contrib.auth.views import LoginView, LogoutView
 from blog.forms import UsuarioForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from blog.models import Avatar, Post
+from blog.models import Avatar, Post, Mensaje
+from django.contrib.auth.admin import User
 
 def index(request):
     posts = Post.objects.order_by('-publicado_el').all()
-    return render(request, "blog/index.html", {})
+    return render(request, "blog/index.html", {"posts": posts})
 
 class PostDetalle(DetailView):
     model = Post
@@ -47,3 +48,22 @@ class AvatarActualizar(UpdateView):
     model = Avatar
     fields = ['imagen']
     success_url = reverse_lazy('ejemplo-dos-listar')
+
+class UserActualizar(UpdateView):
+    model = User
+    fields = ['first_name', 'last_name', 'email']
+    success_url = reverse_lazy('blog-listar')
+
+class MensajeDetalle(LoginRequiredMixin, DetailView):
+    model = Mensaje
+
+class MensajeListar(LoginRequiredMixin, ListView):
+    model = Mensaje    
+
+class MensajeCrear(CreateView):
+    model = Mensaje
+    success_url = reverse_lazy("blog-mensajes-crear")
+    fields = ['nombre', 'email', 'texto']
+
+
+    

@@ -4,6 +4,8 @@
 {% if user.is_authenticated %}
     <a href="{% url 'blog-crear' %}">Crear Post</a>
     <a href="{% url 'blog-avatars-actualizar' user.id %}">Actualizar Avatar</a>
+    <a href="{% url 'blog-users-actualizar' user.id %}">Actualizar Perfil</a>
+    <a href="{% url 'blog-mensajes-listar' %}">Mensajes</a>
     
 {% endif %}
 <ul>

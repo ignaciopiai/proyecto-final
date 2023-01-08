@@ -31,7 +31,7 @@ from ejemplo_dos.views import( index, PostDetalle, PostListar, PostCrear,
 from django.contrib.admin.views.decorators import staff_member_required
 
 from blog.views import  ( index, PostDetalle, PostListar, PostCrear, PostBorrar, PostActualizar, UserSignUp, 
-                                UserLogin, UserLogout, AvatarActualizar )
+                                UserLogin, UserLogout, AvatarActualizar, UserActualizar,  MensajeCrear, MensajeListar, MensajeDetalle  )
 
 
 
@@ -81,6 +81,11 @@ urlpatterns = [
     path('blog/login/', UserLogin.as_view(), name="blog-login"),
     path('blog/logout/', UserLogout.as_view(), name="blog-logout"),
     path('blog/avatars/<int:pk>/actualizar/', AvatarActualizar.as_view(), name="blog-avatars-actualizar"),
+    path('blog/users/<int:pk>/actualizar/', UserActualizar.as_view(), name="blog-users-actualizar"),
+    path('blog/mensajes/crear/', MensajeCrear.as_view(), name="blog-mensajes-crear"),
+    path('blog/mensajes/listar/', MensajeListar.as_view(), name="blog-mensajes-listar"),
+    path('blog/mensajes/<int:pk>/detalle/', MensajeDetalle.as_view(), name="blog-mensajes-detalle"),
+   
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
