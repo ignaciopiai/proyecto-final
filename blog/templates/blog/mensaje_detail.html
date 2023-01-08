@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+
+{% block contenido %}
+   
+   <h2>El Usuario: {{mensaje.nombre}} ha enviado el siguiente mensaje:  </h2>
+   <div>
+    {{mensaje.texto}}
+   </div>
+   <div>
+     Enviado el día: {{mensaje.enviado_el}}
+     Correo del Usuario: {{mensaje.email}}
+   </div>
+  
+
+   <a class="btn btn-primary btn-sm" href="{% url 'blog-listar' %}">Volver al listado</a>
+{% endblock %}
