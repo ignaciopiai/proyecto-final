@@ -17,17 +17,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
-from ejemplo.views import( index, saludar_a, sumar, buscar, monstrar_familiares,
-                             BuscarFamiliar, AltaFamiliar, ActualizarFamiliar,
-                             BorrarFamiliar, mostrar_mascota, AltaMascota, BuscarMascota,
-                             BorrarMascota, ActualizarMascota, mostrar_vehiculo, AltaVehiculo,
-                             BorrarVehiculo, ActualizarVehiculo, FamiliarList, FamiliarCrear, FamiliarBorrar,
-                             FamiliarActualizar )
 
 
-from ejemplo_dos.views import( index, PostDetalle, PostListar, PostCrear,
-                                 PostBorrar, PostActualizar, UserSignUp, UserLogin, UserLogout,
-                                   )
+
+
 from django.contrib.admin.views.decorators import staff_member_required
 
 from blog.views import  ( index, PostDetalle, PostListar, PostCrear, PostBorrar, PostActualizar, UserSignUp, 
@@ -37,39 +30,7 @@ from blog.views import  ( index, PostDetalle, PostListar, PostCrear, PostBorrar,
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('saludar/', index), # ESTA ES LA NUEVA FUNCTION
-    path('saludar-a/<nombre>/', saludar_a),
-    path('sumar/<int:a>/<int:b>/', sumar),
-    path('buscar/',buscar),
-    path('mi-familia/', monstrar_familiares),
-    path('mi-familia/buscar', BuscarFamiliar.as_view()),
-    path('mi-familia/alta', AltaFamiliar.as_view()),
-    path('mi-familia/actualizar/<int:pk>', ActualizarFamiliar.as_view()),
-    path('mi-familia/borrar/<int:pk>', BorrarFamiliar.as_view()),
-    path('mis-mascotas/', mostrar_mascota),
-    path('mis-mascotas/alta', AltaMascota.as_view()),
-    path('mis-mascotas/buscar', BuscarMascota.as_view()),
-    path('mis-mascotas/borrar/<int:pk>', BorrarMascota.as_view()),
-    path('mis-mascotas/actualizar/<int:pk>', ActualizarMascota.as_view()),
-    path('mis-vehiculos/', mostrar_vehiculo),
-    path('mis-vehiculos/alta', AltaVehiculo.as_view()),
-    path('mis-vehiculos/borrar/<int:pk>', BorrarVehiculo.as_view()),
-    path('mis-vehiculos/actualizar/<int:pk>', ActualizarVehiculo.as_view()),
-    path('panel-familia/', FamiliarList.as_view()),
-    path('panel-familia/crear', FamiliarCrear.as_view()),
-    path('panel-familia/<int:pk>/borrar', FamiliarBorrar.as_view()),
-    path('panel-familia/<int:pk>/actualizar', FamiliarActualizar.as_view()),
 
-    path('ejemplo-dos/', index, name="ejemplo-dos-index"),
-    path('ejemplo-dos/<int:pk>/detalle/', PostDetalle.as_view(), name="ejemplo-dos-detalle"),
-    path('ejemplo-dos/listar/', PostListar.as_view(), name="ejemplo-dos-listar"),
-    path('ejemplo-dos/crear/', staff_member_required(PostCrear.as_view()), name="ejemplo-dos-crear"),
-    path('ejemplo-dos/<int:pk>/borrar/', staff_member_required(PostBorrar.as_view()), name="ejemplo-dos-borrar"),
-    path('ejemplo-dos/<int:pk>/actualizar/', staff_member_required(PostActualizar.as_view()), name="ejemplo-dos-actualizar"),
-    path('ejemplo-dos/signup/', UserSignUp.as_view(), name="ejemplo-dos-signup"),
-    path('ejemplo-dos/login/', UserLogin.as_view(), name="ejemplo-dos-login"),
-    path('ejemplo-dos/logout/', UserLogout.as_view(), name="ejemplo-dos-logout"),
-    
 
     path('blog/', index, name="blog-index"),
     path('blog/<int:pk>/detalle/', PostDetalle.as_view(), name="blog-detalle"),
