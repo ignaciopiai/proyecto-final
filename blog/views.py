@@ -47,7 +47,7 @@ class UserLogout(LogoutView):
 class AvatarActualizar(UpdateView):
     model = Avatar
     fields = ['imagen']
-    success_url = reverse_lazy('ejemplo-dos-listar')
+    success_url = reverse_lazy('blog-listar')
 
 class UserActualizar(UpdateView):
     model = User
@@ -64,6 +64,13 @@ class MensajeCrear(CreateView):
     model = Mensaje
     success_url = reverse_lazy("blog-mensajes-crear")
     fields = ['nombre', 'email', 'texto']
+
+class MensajeBorrar(LoginRequiredMixin, DeleteView):
+    model = Mensaje
+    success_url = reverse_lazy("blog-mensajes-listar")
+
+def about(request):
+    return render(request, "blog/about.html")
 
 
     

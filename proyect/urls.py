@@ -24,7 +24,8 @@ from django.urls import path
 from django.contrib.admin.views.decorators import staff_member_required
 
 from blog.views import  ( index, PostDetalle, PostListar, PostCrear, PostBorrar, PostActualizar, UserSignUp, 
-                                UserLogin, UserLogout, AvatarActualizar, UserActualizar,  MensajeCrear, MensajeListar, MensajeDetalle  )
+                                UserLogin, UserLogout, AvatarActualizar, UserActualizar,  MensajeCrear,
+                                 MensajeListar, MensajeDetalle, about, MensajeBorrar  )
 
 
 
@@ -46,6 +47,8 @@ urlpatterns = [
     path('blog/mensajes/crear/', MensajeCrear.as_view(), name="blog-mensajes-crear"),
     path('blog/mensajes/listar/', MensajeListar.as_view(), name="blog-mensajes-listar"),
     path('blog/mensajes/<int:pk>/detalle/', MensajeDetalle.as_view(), name="blog-mensajes-detalle"),
+    path('blog/about', about, name="blog-about"),
+    path('blog/mensajes/<int:pk>/borrar/',  staff_member_required(MensajeBorrar.as_view()), name="blog-mensajes-borrar"),
    
 ]
 
